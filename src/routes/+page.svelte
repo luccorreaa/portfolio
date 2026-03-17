@@ -12,7 +12,7 @@
   const t = {
     es: {
       available:    '// disponible para trabajar',
-      heroDesc:     'Construyendo experiencias web modernas y aplicaciones interactivas — del concepto a producción.',
+      heroDesc: 'Transformando datos en decisiones. Apasionado por el análisis, la visualización y el aprendizaje continuo.',
       viewProjects: 'Ver Proyectos',
       contact:      'Contacto',
       aboutLabel:   '// 01 — sobre mí',
@@ -34,7 +34,7 @@
     },
     en: {
       available:    '// available for work',
-      heroDesc:     'Building modern web experiences and interactive applications — from concept to production.',
+      heroDesc: 'Turning data into decisions. Passionate about analysis, visualization and continuous learning.',
       viewProjects: 'View Projects',
       contact:      'Contact',
       aboutLabel:   '// 01 — about',
