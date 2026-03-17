@@ -25,7 +25,7 @@
       contactTitle: 'Trabajemos juntos',
       downloadCV:   'Descargar CV',
       nav:          { hero: 'inicio', about: 'sobre mí', projects: 'proyectos', contact: 'contacto' },
-      roles:        ['Desarrollador Frontend', 'Diseñador UI', 'Desarrollador Web'],
+      roles: ['Analista de Datos', 'Data Scientist Jr.', 'Entusiasta de Python'],
       projects: [
         { name: 'Portfolio',  tech: 'SvelteKit / Tailwind' },
         { name: 'Web App',    tech: 'Node.js / JavaScript'  },
@@ -47,7 +47,7 @@
       contactTitle: 'Let\'s work together',
       downloadCV:   'Download CV',
       nav:          { hero: 'home', about: 'about', projects: 'projects', contact: 'contact' },
-      roles:        ['Frontend Developer', 'UI Designer', 'Web Developer'],
+      roles: ['Data Analyst', 'Jr. Data Scientist', 'Python Enthusiast'],
       projects: [
         { name: 'Portfolio',  tech: 'SvelteKit / Tailwind' },
         { name: 'Web App',    tech: 'Node.js / JavaScript'  },
