@@ -2,7 +2,6 @@
   import { onMount, onDestroy } from 'svelte'
   import { browser } from '$app/environment'
 
-  /* ── ESTADO REACTIVO (Svelte 5) ── */
   let x = $state(0)
   let y = $state(0)
   let typedText = $state('')
@@ -10,7 +9,6 @@
   let isPointer = $state(false)
   let lang = $state('es')
 
-  /* ── TRADUCCIONES ── */
   const t = {
     es: {
       available:    '// disponible para trabajar',
@@ -60,7 +58,6 @@
 
   let tr = $derived(t[lang])
 
-  /* ── CURSOR ── */
   function onMouseMove(e) {
     x = e.clientX
     y = e.clientY
@@ -68,7 +65,6 @@
     isPointer = !!el?.closest('button, a, [role="button"], [role="presentation"], .tech-tag, .nav-item')
   }
 
-  /* ── MATRIX ── */
   let canvas = $state(null)
   let matrixInterval
   const chars = '01アイウエオカキクケコサシスセソ'
@@ -113,7 +109,6 @@
     window.addEventListener('resize', onResize)
   }
 
-  /* ── TYPING ── */
   let typingActive = true
 
   async function typeLoop() {
@@ -136,7 +131,6 @@
     }
   }
 
-  /* ── TILT CARDS ── */
   function tilt(e) {
     const card = e.currentTarget
     const r  = card.getBoundingClientRect()
@@ -148,14 +142,12 @@
     e.currentTarget.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)'
   }
 
-  /* ── NAV ── */
   const sections = ['hero', 'about', 'projects', 'contact']
 
   function goTo(id) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  /* ── SCROLL REVEAL + ACTIVE NAV ── */
   let revealEls = $state([])
   let observer
   let navObserver
@@ -175,7 +167,6 @@
     })
   }
 
-  /* ── LIFECYCLE ── */
   onMount(() => {
     window.addEventListener('mousemove', onMouseMove)
     initMatrix()
@@ -198,10 +189,8 @@
   ]
 </script>
 
-<!-- CURSOR -->
 <div id="cursor" style="left:{x}px; top:{y}px;" class:pointer={isPointer}>
   {#if !isPointer}
-    <!-- FLECHA -->
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="cg" x1="4" y1="3" x2="18" y2="24" gradientUnits="userSpaceOnUse">
@@ -217,7 +206,6 @@
         fill="url(#cg)"/>
     </svg>
   {:else}
-    <!-- MANO estilo cursor nativo -->
     <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="hg" x1="2" y1="2" x2="18" y2="24" gradientUnits="userSpaceOnUse">
@@ -225,7 +213,6 @@
           <stop offset="100%" stop-color="#000000"/>
         </linearGradient>
       </defs>
-      <!-- Sombra -->
       <path d="M7,8 L7,3 A2,2 0 0,1 11,3 L11,9
         C11.5,8.5 12.1,8.3 12.8,8.5 C13.3,8.7 13.7,9.1 13.8,9.6
         C14.2,9.1 14.9,8.9 15.6,9.1 C15.8,9.2 16.2,9.5 16.4,9.9
@@ -235,7 +222,6 @@
         C3.5,16.3 3.6,15.3 4.3,14.8 C5,14.3 6,14.4 6.5,15.1
         L8,17 Z"
         fill="rgba(0,0,0,0.25)" transform="translate(1,1)"/>
-      <!-- 1. Relleno degradado -->
       <path d="M7,8 L7,3 A2,2 0 0,1 11,3 L11,9
         C11.5,8.5 12.1,8.3 12.8,8.5 C13.3,8.7 13.7,9.1 13.8,9.6
         C14.2,9.1 14.9,8.9 15.6,9.1 C15.8,9.2 16.2,9.5 16.4,9.9
@@ -245,7 +231,6 @@
         C3.5,16.3 3.6,15.3 4.3,14.8 C5,14.3 6,14.4 6.5,15.1
         L8,17 Z"
         fill="url(#hg)" stroke="none"/>
-      <!-- 2. Borde blanco encima — fill none para que no tape el degradado -->
       <path d="M7,8 L7,3 A2,2 0 0,1 11,3 L11,9
         C11.5,8.5 12.1,8.3 12.8,8.5 C13.3,8.7 13.7,9.1 13.8,9.6
         C14.2,9.1 14.9,8.9 15.6,9.1 C15.8,9.2 16.2,9.5 16.4,9.9
@@ -255,7 +240,6 @@
         C3.5,16.3 3.6,15.3 4.3,14.8 C5,14.3 6,14.4 6.5,15.1
         L8,17 Z"
         fill="none" stroke="white" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-      <!-- Separadores dedos -->
       <line x1="11" y1="10.5" x2="13.8" y2="10.5" stroke="rgba(255,255,255,0.3)" stroke-width="0.7"/>
       <line x1="13.8" y1="11.2" x2="16.4" y2="11.2" stroke="rgba(255,255,255,0.3)" stroke-width="0.7"/>
       <line x1="16.4" y1="12" x2="18.8" y2="12" stroke="rgba(255,255,255,0.3)" stroke-width="0.7"/>
@@ -263,13 +247,10 @@
   {/if}
 </div>
 
-<!-- MATRIX -->
 <canvas bind:this={canvas} id="matrix-canvas"></canvas>
 
-<!-- LAYOUT -->
 <div class="layout">
 
-  <!-- SIDEBAR -->
   <nav class="sidebar">
     <div class="nav-logo">LC_</div>
     <div class="nav-links">
@@ -284,7 +265,6 @@
       {/each}
     </div>
 
-    <!-- LANG SWITCHER -->
     <div class="lang-switcher">
       <button class="lang-btn {lang === 'en' ? 'active' : ''}" onclick={() => lang = 'en'}>EN</button>
       <span class="lang-sep">|</span>
@@ -307,10 +287,8 @@
     </div>
   </nav>
 
-  <!-- CONTENIDO -->
   <main class="content">
 
-    <!-- HERO -->
     <section id="hero">
       <div class="hero-inner">
         <p class="hero-tag">{tr.available}</p>
@@ -326,7 +304,6 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
       <div class="reveal" bind:this={revealEls[0]}>
         <p class="section-label">{tr.aboutLabel}</p>
@@ -369,7 +346,6 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects">
       <div class="reveal" bind:this={revealEls[1]}>
         <p class="section-label">{tr.projectsLabel}</p>
@@ -396,7 +372,6 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
       <div class="reveal" bind:this={revealEls[2]}>
         <p class="section-label">{tr.contactLabel}</p>
@@ -438,11 +413,7 @@
 </div>
 
 <style>
-  /* Fonts — agregá en src/app.html:
-     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  */
 
-  /* Forzar cursor none en TODO — incluyendo elementos interactivos */
   :global(*, *::before, *::after) { box-sizing: border-box; margin: 0; padding: 0; }
   :global(html) { scroll-behavior: smooth; height: 100%; }
   :global(body) {
@@ -467,7 +438,6 @@
     z-index: 9999;
     filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.6));
   }
-  /* La mano necesita alinearse desde la punta del dedo índice */
   #cursor.pointer {
     transform: translate(-6px, -2px);
   }
@@ -488,7 +458,6 @@
     z-index: 1;
   }
 
-  /* SIDEBAR */
   .sidebar {
     position: fixed;
     left: 0; top: 0;
@@ -664,7 +633,6 @@
     color: #f0f0f0;
   }
 
-  /* HERO */
   #hero { justify-content: center; }
   .hero-inner { max-width: 680px; }
 
@@ -765,7 +733,6 @@
   }
   .btn-outline:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
 
-  /* ABOUT */
   #about { overflow: hidden; }
 
   .about-grid {
@@ -832,7 +799,6 @@
     z-index: 1;
   }
 
-  /* PROJECTS */
   #projects { align-items: center; }
 
   .projects-grid {
@@ -897,7 +863,6 @@
   }
   .project-link:hover { background: rgba(0,255,156,0.1); }
 
-  /* CONTACT */
   #contact { justify-content: flex-start; }
 
   .contact-inner {
@@ -989,7 +954,6 @@
     transform: translateY(2px);
   }
 
-  /* SCROLL REVEAL */
   :global(.reveal) {
     opacity: 0;
     transform: translateY(22px);
@@ -998,7 +962,6 @@
   }
   :global(.reveal.visible) { opacity: 1; transform: translateY(0); }
 
-  /* KEYFRAMES */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -1009,7 +972,6 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* RESPONSIVE */
   @media (max-width: 900px) {
     .sidebar { width: 160px; padding: 2rem 1.5rem; }
     .content { margin-left: 160px; }
