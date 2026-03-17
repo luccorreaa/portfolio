@@ -1,42 +1,39 @@
-# sv
+# Portfolio — Luciano Correa
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Personal portfolio built with SvelteKit, featuring a matrix-style background, custom cursor, smooth scroll navigation, and full EN/ES language support.
 
-## Creating a project
+## Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Framework:** SvelteKit (Svelte 5)
+- **Styling:** CSS custom properties, IBM Plex Mono, Outfit
+- **Language:** TypeScript-compatible JavaScript
+- **Build tool:** Vite
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## Features
 
-To recreate this project with the same configuration:
+- Matrix rain background rendered on Canvas
+- Custom SVG cursor with pointer state detection
+- Sidebar navigation with active section tracking via IntersectionObserver
+- EN / ES language switcher with full content translation
+- Typing effect with role rotation
+- 3D tilt effect on project cards
+- Scroll reveal animations
+- CV download button
+- Fully responsive layout
 
-```sh
-# recreate this project
-npx sv@0.12.7 create --template minimal --no-types --add prettier eslint tailwindcss="plugins:forms" --install npm portolio
-```
+## Getting Started
 
-## Developing
+```bash
+# Install dependencies
+npm install
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+# Start development server
 npm run dev
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
+# Build for production
 npm run build
+
+# Preview production build
+npm run preview
 ```
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
