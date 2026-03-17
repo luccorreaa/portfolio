@@ -60,10 +60,13 @@
 
   let tr = $derived(t[lang])
 
+  let cursorVisible = $state(false)
+
   /* ── CURSOR ── */
   function onMouseMove(e) {
     x = e.clientX
     y = e.clientY
+    cursorVisible = true
     const el = document.elementFromPoint(e.clientX, e.clientY)
     isPointer = !!el?.closest('button, a, [role="button"], [role="presentation"], .tech-tag, .nav-item')
   }
