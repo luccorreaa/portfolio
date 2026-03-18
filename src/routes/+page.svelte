@@ -61,6 +61,9 @@
   let tr = $derived(t[lang])
 
   let cursorVisible = $state(false)
+  let menuOpen = $state(false)
+
+  function closeMenu() { menuOpen = false }
 
   /* ── CURSOR ── */
   function onMouseMove(e) {
@@ -202,7 +205,7 @@
 </script>
 
 <!-- CURSOR -->
-<div id="cursor" style="left:{x}px; top:{y}px;" class:pointer={isPointer}>
+<div id="cursor" style="left:{x}px; top:{y}px; opacity:{cursorVisible ? 1 : 0}" class:pointer={isPointer}>
   {#if !isPointer}
     <!-- FLECHA -->
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -268,6 +271,54 @@
 
 <!-- MATRIX -->
 <canvas bind:this={canvas} id="matrix-canvas"></canvas>
+
+<!-- MOBILE HEADER -->
+<header class="mobile-header">
+  <button class="hamburger" onclick={() => menuOpen = !menuOpen} aria-label="Menu">
+    {#if menuOpen}
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    {:else}
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    {/if}
+  </button>
+  <span class="mobile-logo">LC_</span>
+  <div class="mobile-lang">
+    <button class="lang-btn {lang === 'en' ? 'active' : ''}" onclick={() => lang = 'en'}>EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn {lang === 'es' ? 'active' : ''}" onclick={() => lang = 'es'}>ES</button>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+{#if menuOpen}
+  <div
+    class="mobile-overlay"
+    role="button"
+    tabindex="-1"
+    onclick={closeMenu}
+    onkeydown={(e) => e.key === 'Escape' && closeMenu()}
+  ></div>
+  <nav class="mobile-drawer">
+    <div class="mobile-drawer-links">
+      {#each sections as s (s)}
+        <button
+          class="nav-item {activeSection === s ? 'active' : ''}"
+          onclick={() => { goTo(s); closeMenu() }}
+        >
+          <span class="nav-dot"></span>
+          <span class="nav-label">{tr.nav[s]}</span>
+        </button>
+      {/each}
+    </div>
+  </nav>
+{/if}
 
 <!-- LAYOUT -->
 <div class="layout">
@@ -1038,5 +1089,100 @@
     :global(a), :global(button), :global(input), :global(select),
     :global(textarea), :global([role="button"]), :global([tabindex]),
     :global([role="presentation"]) { cursor: auto !important; }
+  }
+
+  /* MOBILE HEADER */
+  .mobile-header {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: rgba(6,6,6,0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    z-index: 200;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.2rem;
+  }
+
+  .hamburger {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+    transition: color 0.2s, background 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hamburger:hover { color: #00ff9c; background: rgba(0,255,156,0.07); }
+
+  .mobile-logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #00ff9c;
+    letter-spacing: 0.05em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .mobile-lang {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* MOBILE DRAWER */
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 300;
+    backdrop-filter: blur(2px);
+  }
+
+  .mobile-drawer {
+    display: none;
+    position: fixed;
+    top: 56px; left: 0;
+    width: 220px;
+    height: calc(100vh - 56px);
+    background: rgba(6,6,6,0.97);
+    border-right: 1px solid rgba(255,255,255,0.07);
+    z-index: 400;
+    padding: 1.5rem 1.2rem;
+    flex-direction: column;
+  }
+
+  .mobile-drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  @media (max-width: 640px) {
+    .mobile-header { display: flex; }
+    .mobile-overlay { display: block; }
+    .mobile-drawer { display: flex; }
+    .sidebar { display: none; }
+    .content { margin-left: 0; padding-top: 56px; }
+    section { padding: 3rem 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 900px) and (min-width: 641px) {
+    .mobile-header { display: none; }
+    .sidebar { width: 160px; padding: 2rem 1.5rem; }
+    .content { margin-left: 160px; }
+    section { padding: 3rem 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .about-rings { display: none; }
   }
 </style>
