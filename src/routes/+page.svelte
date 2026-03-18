@@ -161,6 +161,22 @@
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  /* ── HEADER SCROLL HIDE/SHOW ── */
+  let headerVisible = $state(true)
+  let lastScrollY = 0
+
+  function onScroll() {
+    const current = window.scrollY
+    if (current < 50) {
+      headerVisible = true
+    } else if (current > lastScrollY + 8) {
+      headerVisible = false
+    } else if (current < lastScrollY - 8) {
+      headerVisible = true
+    }
+    lastScrollY = current
+  }
+
   /* ── SCROLL REVEAL + ACTIVE NAV ── */
   let revealEls = $state([])
   let observer
@@ -184,6 +200,7 @@
   /* ── LIFECYCLE ── */
   onMount(() => {
     window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('scroll', onScroll, { passive: true })
     initMatrix()
     typeLoop()
     setupObservers()
@@ -196,6 +213,7 @@
     if (observer) observer.disconnect()
     if (navObserver) navObserver.disconnect()
     window.removeEventListener('mousemove', onMouseMove)
+    window.removeEventListener('scroll', onScroll)
   })
 
   const techs = [
@@ -273,7 +291,7 @@
 <canvas bind:this={canvas} id="matrix-canvas"></canvas>
 
 <!-- MOBILE HEADER -->
-<header class="mobile-header">
+<header class="mobile-header {headerVisible ? '' : 'hidden'}">
   <button class="hamburger" onclick={() => menuOpen = !menuOpen} aria-label="Menu">
     {#if menuOpen}
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -1104,6 +1122,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 1.2rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .mobile-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
   }
 
   .hamburger {
@@ -1184,5 +1207,13 @@
     section { padding: 3rem 2.5rem; }
     .projects-grid { grid-template-columns: 1fr 1fr; }
     .about-rings { display: none; }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    #cursor { display: none; }
+    :global(body) { cursor: auto; }
+    :global(a), :global(button), :global(input), :global(select),
+    :global(textarea), :global([role="button"]), :global([tabindex]),
+    :global([role="presentation"]) { cursor: auto !important; }
   }
 </style>
