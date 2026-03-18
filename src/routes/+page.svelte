@@ -484,7 +484,7 @@
 
     <!-- CONTACT -->
     <section id="contact">
-      <div class="reveal" bind:this={revealEls[2]}>
+      <div class="reveal contact-reveal" bind:this={revealEls[2]}>
         <p class="section-label">{tr.contactLabel}</p>
         <h2 class="section-title">{tr.contactTitle}</h2>
         <div class="divider"></div>
@@ -987,16 +987,24 @@
   .project-link:hover { background: rgba(0,255,156,0.1); }
 
   /* CONTACT */
-  #contact { justify-content: flex-start; }
+  #contact { justify-content: center; }
+
+  :global(.contact-reveal) {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .contact-inner {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
+    text-align: center;
   }
 
-  .divider { width: 44px; height: 2px; background: #00ff9c; margin: 1.4rem 0; border-radius: 2px; }
+  .divider { width: 44px; height: 2px; background: #00ff9c; margin: 1.4rem auto; border-radius: 2px; }
 
   .contact-email {
     font-family: 'IBM Plex Mono', monospace;
