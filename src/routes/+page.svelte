@@ -121,26 +121,37 @@
 
   /* ── TYPING ── */
   let typingActive = true
+  let langChanged = false
 
   async function typeLoop() {
     const sleep = ms => new Promise(r => setTimeout(r, ms))
     let ri = 0
     while (typingActive) {
+      langChanged = false
       const roles = t[lang].roles
       const word = roles[ri % roles.length]
-      for (let i = 0; i <= word.length && typingActive; i++) {
+
+      for (let i = 0; i <= word.length && typingActive && !langChanged; i++) {
         typedText = word.slice(0, i)
         await sleep(75)
       }
-      await sleep(1600)
-      for (let i = word.length; i >= 0 && typingActive; i--) {
-        typedText = word.slice(0, i)
-        await sleep(38)
+
+      if (!langChanged) await sleep(1600)
+
+      for (let i = typedText.length; i >= 0 && typingActive; i--) {
+        typedText = typedText.slice(0, i)
+        await sleep(langChanged ? 25 : 38)
       }
-      await sleep(250)
-      ri = (ri + 1) % roles.length
+
+      await sleep(200)
+      if (!langChanged) ri = (ri + 1) % roles.length
     }
   }
+
+  $effect(() => {
+    lang
+    langChanged = true
+  })
 
   /* ── TILT CARDS ── */
   function tilt(e) {
