@@ -27,7 +27,7 @@
       contactTitle: 'Trabajemos juntos',
       downloadCV:   'Descargar CV',
       nav:          { hero: 'inicio', about: 'sobre mí', projects: 'proyectos', contact: 'contacto' },
-      roles:        ['Desarrollador Frontend', 'Diseñador UI', 'Desarrollador Web'],
+      roles:        ['Analista de Datos', 'Científico de Datos Jr.', 'Entusiasta de Python'],
       projects: [
         { name: 'Portfolio',  tech: 'SvelteKit / Tailwind' },
         { name: 'Web App',    tech: 'Node.js / JavaScript'  },
@@ -49,7 +49,7 @@
       contactTitle: 'Let\'s work together',
       downloadCV:   'Download CV',
       nav:          { hero: 'home', about: 'about', projects: 'projects', contact: 'contact' },
-      roles:        ['Frontend Developer', 'UI Designer', 'Web Developer'],
+      roles:        ['Data Analyst', 'Jr. Data Scientist', 'Python Enthusiast'],
       projects: [
         { name: 'Portfolio',  tech: 'SvelteKit / Tailwind' },
         { name: 'Web App',    tech: 'Node.js / JavaScript'  },
@@ -166,12 +166,13 @@
   let lastScrollY = 0
 
   function onScroll() {
-    const current = window.scrollY
+    const current = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop
     if (current < 50) {
       headerVisible = true
-    } else if (current > lastScrollY + 8) {
+    } else if (current > lastScrollY + 5) {
       headerVisible = false
-    } else if (current < lastScrollY - 8) {
+      menuOpen = false
+    } else if (current < lastScrollY - 5) {
       headerVisible = true
     }
     lastScrollY = current
@@ -201,6 +202,7 @@
   onMount(() => {
     window.addEventListener('mousemove', onMouseMove)
     window.addEventListener('scroll', onScroll, { passive: true })
+    document.addEventListener('scroll', onScroll, { passive: true })
     initMatrix()
     typeLoop()
     setupObservers()
@@ -214,6 +216,7 @@
     if (navObserver) navObserver.disconnect()
     window.removeEventListener('mousemove', onMouseMove)
     window.removeEventListener('scroll', onScroll)
+    document.removeEventListener('scroll', onScroll)
   })
 
   const techs = [
@@ -1195,7 +1198,7 @@
     .mobile-drawer { display: flex; }
     .sidebar { display: none; }
     .content { margin-left: 0; padding-top: 56px; }
-    section { padding: 3rem 1.5rem; }
+    section { padding: 3rem 1.5rem; height: auto; min-height: 100svh; }
     .projects-grid { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; }
   }
