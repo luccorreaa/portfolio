@@ -10,6 +10,8 @@
   let isPointer = $state(false)
   let lang = $state('es')
 
+  const blockchainSVG = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 170" font-family="monospace"><rect width="400" height="170" fill="#060606"/><g font-size="8.5" fill="rgba(0,255,156,0.05)"><text x="4" y="14">7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8</text><text x="4" y="28">b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e</text><text x="4" y="42">f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c</text><text x="4" y="56">3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4</text><text x="4" y="70">9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0</text><text x="4" y="84">5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6</text><text x="4" y="98">1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2</text><text x="4" y="112">7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8</text><text x="4" y="126">3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4</text><text x="4" y="140">9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0</text><text x="4" y="154">5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6</text><text x="4" y="168">1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2</text></g><rect x="14" y="22" width="110" height="118" rx="5" fill="rgba(0,255,156,0.05)" stroke="rgba(0,255,156,0.35)" stroke-width="1"/><rect x="14" y="22" width="110" height="21" rx="5" fill="rgba(0,255,156,0.13)"/><rect x="14" y="37" width="110" height="6" fill="rgba(0,255,156,0.13)"/><text x="69" y="37" text-anchor="middle" font-size="8.5" fill="#00ff9c" font-weight="bold">GENESIS</text><text x="22" y="58" font-size="7" fill="rgba(0,255,156,0.5)">prev: 0000000000000000</text><text x="22" y="72" font-size="7" fill="rgba(0,255,156,0.5)">hash: 0000a3f8b2c1d4e9</text><text x="22" y="86" font-size="7" fill="rgba(0,255,156,0.38)">nonce: 14823</text><text x="22" y="100" font-size="7" fill="rgba(0,255,156,0.38)">txns:  2</text><text x="22" y="114" font-size="6.5" fill="rgba(0,255,156,0.22)">Ed25519 signed</text><text x="22" y="128" font-size="6.5" fill="rgba(0,255,156,0.22)">merkle: verified</text><line x1="124" y1="81" x2="140" y2="81" stroke="rgba(0,255,156,0.5)" stroke-width="1.5" stroke-dasharray="3,2"/><polygon points="140,77 148,81 140,85" fill="rgba(0,255,156,0.5)"/><rect x="148" y="22" width="110" height="118" rx="5" fill="rgba(0,255,156,0.04)" stroke="rgba(0,255,156,0.25)" stroke-width="1"/><rect x="148" y="22" width="110" height="21" rx="5" fill="rgba(0,255,156,0.09)"/><rect x="148" y="37" width="110" height="6" fill="rgba(0,255,156,0.09)"/><text x="203" y="37" text-anchor="middle" font-size="8.5" fill="rgba(0,255,156,0.9)" font-weight="bold">BLOCK #1</text><text x="156" y="58" font-size="7" fill="rgba(0,255,156,0.42)">prev: 0000a3f8b2c1d4e9</text><text x="156" y="72" font-size="7" fill="rgba(0,255,156,0.42)">hash: 00001e7f9a3c5b8d</text><text x="156" y="86" font-size="7" fill="rgba(0,255,156,0.3)">nonce: 29471</text><text x="156" y="100" font-size="7" fill="rgba(0,255,156,0.3)">txns:  3</text><text x="156" y="114" font-size="6.5" fill="rgba(0,255,156,0.18)">Ed25519 signed</text><text x="156" y="128" font-size="6.5" fill="rgba(0,255,156,0.18)">merkle: verified</text><line x1="258" y1="81" x2="274" y2="81" stroke="rgba(0,255,156,0.38)" stroke-width="1.5" stroke-dasharray="3,2"/><polygon points="274,77 282,81 274,85" fill="rgba(0,255,156,0.38)"/><rect x="282" y="22" width="110" height="118" rx="5" fill="rgba(0,255,156,0.03)" stroke="rgba(0,255,156,0.18)" stroke-width="1"/><rect x="282" y="22" width="110" height="21" rx="5" fill="rgba(0,255,156,0.06)"/><rect x="282" y="37" width="110" height="6" fill="rgba(0,255,156,0.06)"/><text x="337" y="37" text-anchor="middle" font-size="8.5" fill="rgba(0,255,156,0.7)" font-weight="bold">BLOCK #2</text><text x="290" y="58" font-size="7" fill="rgba(0,255,156,0.35)">prev: 00001e7f9a3c5b8d</text><text x="290" y="72" font-size="7" fill="rgba(0,255,156,0.35)">hash: 00007b2d4f8a1c9e</text><text x="290" y="86" font-size="7" fill="rgba(0,255,156,0.25)">nonce: 73829</text><text x="290" y="100" font-size="7" fill="rgba(0,255,156,0.25)">txns:  5</text><text x="290" y="114" font-size="6.5" fill="rgba(0,255,156,0.15)">Ed25519 signed</text><text x="290" y="128" font-size="6.5" fill="rgba(0,255,156,0.15)">merkle: verified</text><text x="200" y="160" text-anchor="middle" font-size="7.5" fill="rgba(0,255,156,0.2)" letter-spacing="1.5">SHA-256 · ED25519 · MERKLE TREE</text></svg>`)}`
+
   /* ── TRADUCCIONES ── */
   const t = {
     es: {
@@ -19,7 +21,7 @@
       contact:      'Contacto',
       aboutLabel:   '// 01 — sobre mí',
       aboutTitle:   'Sobre mí',
-      aboutText:    'Soy un desarrollador enfocado en Data Science e ingeniería de datos, con experiencia en análisis exploratorio, modelado predictivo y visualización de información usando Python y su ecosistema científico. Trabajo con herramientas como Pandas, NumPy, Scikit-learn y TensorFlow para transformar datos en decisiones concretas. Complemento mis proyectos con SQL para gestión de bases de datos y Power BI para reporting ejecutivo. Actualmente estoy iniciando mi camino en Rust, atraído por su enfoque en rendimiento y seguridad de memoria — cualidades clave en pipelines de datos de alta escala.',
+      aboutText:    'Ingeniero de Software dedicado a construir sistemas de alto rendimiento y seguros en memoria con Rust. Tengo un profundo interés en criptografía y arquitecturas descentralizadas, enfocándome en el desarrollo de servicios backend robustos donde la seguridad es un requisito nativo. Cuento con experiencia práctica diseñando e implementando lógica central de blockchain en Rust —incluyendo validación de bloques, hashing criptográfico e inmutabilidad de la cadena. Me apasionan los sistemas de bajo nivel y el software correcto por construcción, aprovechando el modelo de ownership de Rust para construir infraestructura concurrente y resiliente.',
       projectsLabel:'// 02 — proyectos',
       projectsTitle:'Trabajos recientes',
       viewProject:  'Ver proyecto →',
@@ -27,8 +29,9 @@
       contactTitle: 'Trabajemos juntos',
       downloadCV:   'Descargar CV',
       nav:          { hero: 'inicio', about: 'sobre mí', projects: 'proyectos', contact: 'contacto' },
-      roles:        ['Analista de Datos', 'Científico de Datos Jr.', 'Entusiasta de Python'],
+      roles:        ['Ingeniero Rust Junior', 'Dev Backend & Blockchain', 'Entusiasta de Rust'],
       projects: [
+        { name: 'Mini Blockchain', tech: 'Rust · SHA-256 · Ed25519', link: 'https://github.com/luccorreaa/mini-blockchain', image: blockchainSVG },
         { name: 'Portfolio',  tech: 'SvelteKit / Tailwind' },
         { name: 'Web App',    tech: 'Node.js / JavaScript'  },
         { name: 'Dashboard',  tech: 'React / API'           },
@@ -41,7 +44,7 @@
       contact:      'Contact',
       aboutLabel:   '// 01 — about',
       aboutTitle:   'About me',
-      aboutText:    'I\'m a developer focused on Data Science and data engineering, with experience in exploratory analysis, predictive modeling, and data visualization using Python and its scientific ecosystem. I work with tools like Pandas, NumPy, Scikit-learn, and TensorFlow to turn data into concrete decisions. I complement my projects with SQL for database management and Power BI for executive reporting. I\'m currently starting my journey with Rust, drawn to its focus on performance and memory safety — key qualities in large-scale data pipelines.',
+      aboutText:    'Software Engineer dedicated to building high-performance, memory-safe systems with Rust. I have a deep interest in cryptography and decentralized architectures, focusing on the development of robust backend services where security is a native requirement. I have practical experience designing and implementing core blockchain logic in Rust—including block validation, cryptographic hashing, and chain immutability. I am passionate about low-level systems and correct-by-construction software, leveraging Rust\'s ownership model to build concurrent and resilient infrastructure.',
       projectsLabel:'// 02 — projects',
       projectsTitle:'Recent work',
       viewProject:  'View project →',
@@ -49,8 +52,9 @@
       contactTitle: 'Let\'s work together',
       downloadCV:   'Download CV',
       nav:          { hero: 'home', about: 'about', projects: 'projects', contact: 'contact' },
-      roles:        ['Data Analyst', 'Jr. Data Scientist', 'Python Enthusiast'],
+      roles:        ['Junior Rust Engineer', 'Backend & Blockchain Dev', 'Rust Enthusiast'],
       projects: [
+        { name: 'Mini Blockchain', tech: 'Rust · SHA-256 · Ed25519', link: 'https://github.com/luccorreaa/mini-blockchain', image: blockchainSVG },
         { name: 'Portfolio',  tech: 'SvelteKit / Tailwind' },
         { name: 'Web App',    tech: 'Node.js / JavaScript'  },
         { name: 'Dashboard',  tech: 'React / API'           },
@@ -231,8 +235,7 @@
   })
 
   const techs = [
-    'Python', 'Pandas', 'NumPy', 'Scikit-learn',
-    'TensorFlow', 'Matplotlib', 'SQL', 'Power BI', 'Rust', 'Go'
+    'Rust', 'Tokio', 'Axum', 'P2P', 'PostgreSQL', 'Go'
   ]
 </script>
 
@@ -423,24 +426,16 @@
         <div class="tech-stack">
             {#each techs as t (t)}
               <span class="tech-tag">
-                {#if t === 'Python'}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.03v-2.867s-.109-3.402 3.35-3.402h5.766s3.24.052 3.24-3.131V3.19S18.28 0 11.914 0zm-3.2 1.848a1.046 1.046 0 1 1 0 2.092 1.046 1.046 0 0 1 0-2.092z"/><path d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752h-5.814v-.826h8.121S24 18.211 24 12.031c0-6.18-3.403-5.96-3.403-5.96h-2.03v2.867s.109 3.402-3.35 3.402H9.451s-3.24-.052-3.24 3.131v5.339S5.72 24 12.086 24zm3.2-1.848a1.046 1.046 0 1 1 0-2.092 1.046 1.046 0 0 1 0 2.092z"/></svg>
-                {:else if t === 'Pandas'}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M9.074 2.49v6.45H7.498V2.49h1.576zm0 12.57v6.45H7.498v-6.45h1.576zM16.502 7.06v9.88h-1.576V7.06h1.576zM9.861 0H6.71v24h3.152V0zm6.716 4.572H13.43V24h3.148V4.572z"/></svg>
-                {:else if t === 'NumPy'}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.242 0L0 6v12l11.242 6L22.485 18V6zm-1.07 1.95l1.07.572 1.07-.572 5.734 3.06-1.052.562-4.682-2.5-4.682 2.5-1.052-.562zM4.43 6.54l5.742 3.067v6.126L4.43 12.667zm6.812 3.067l5.743-3.067v6.126l-5.743 3.067z"/></svg>
-                {:else if t === 'Scikit-learn'}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l7 4.5-7 4.5z"/></svg>
-                {:else if t === 'TensorFlow'}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M1.292 5.856L11.54 0v24l-4.095-2.378V7.603l-6.168 3.564.015-5.31zm21.43 5.311l-6.168-3.564v14.02L12.46 24V0l10.248 5.856.014 5.31z"/></svg>
-                {:else if t === 'Matplotlib'}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 2a8 8 0 0 1 6.93 4H5.07A8 8 0 0 1 12 4zM4 12a8 8 0 0 1 .07-1h15.86A8 8 0 1 1 4 12z"/></svg>
-                {:else if t === 'SQL'}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm6 14c0 .84-2.46 2-6 2s-6-1.16-6-2v-2.23C7.53 15.56 9.68 16 12 16s4.47-.44 6-1.23V17zm0-5c0 .84-2.46 2-6 2s-6-1.16-6-2v-2.23C7.53 10.56 9.68 11 12 11s4.47-.44 6-1.23V12zm-6-3C8.46 9 6 7.84 6 7s2.46-2 6-2 6 1.16 6 2-2.46 2-6 2z"/></svg>
-                {:else if t === 'Power BI'}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h4v18H3zm5.5 5h4v13H8.5zM14 8h4v13h-4zM19.5 3H21v18h-1.5z"/></svg>
-                {:else if t === 'Rust'}
+                {#if t === 'Rust'}
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 1.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17zm-.75 3v3.25H8.5l3.5 4 3.5-4h-2.75V6.5h-1.5zm-3.5 6.25a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zm8.5 0a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zm-4.25 2v1.5h-2l1 1.75h2l1-1.75h-2V14.75z"/></svg>
+                {:else if t === 'Tokio'}
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h7l-2 8 11-13h-7z"/></svg>
+                {:else if t === 'Axum'}
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 5L3 12l5 7M16 5l5 7-5 7M14 3l-4 18"/></svg>
+                {:else if t === 'P2P'}
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5.5" r="2.5"/><circle cx="19" cy="18.5" r="2.5"/><path d="M7.2 10.8L16.6 6.6M7.2 13.2L16.6 17.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+                {:else if t === 'PostgreSQL'}
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm6 14c0 .84-2.46 2-6 2s-6-1.16-6-2v-2.23C7.53 15.56 9.68 16 12 16s4.47-.44 6-1.23V17zm0-5c0 .84-2.46 2-6 2s-6-1.16-6-2v-2.23C7.53 10.56 9.68 11 12 11s4.47-.44 6-1.23V12zm-6-3C8.46 9 6 7.84 6 7s2.46-2 6-2 6 1.16 6 2-2.46 2-6 2z"/></svg>
                 {:else if t === 'Go'}
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M1.811 10.231c-.047 0-.058-.023-.035-.059l.246-.315c.023-.035.081-.058.128-.058h4.172c.046 0 .058.035.035.07l-.199.303c-.023.036-.082.07-.117.07zm-1.764 1.075c-.047 0-.059-.023-.035-.058l.245-.316c.023-.035.082-.058.129-.058h5.328c.047 0 .07.035.058.07l-.093.28c-.012.047-.058.07-.105.07zm2.828 1.075c-.047 0-.059-.035-.035-.07l.163-.292c.023-.035.07-.07.117-.07h2.337c.047 0 .07.035.07.082l-.023.28c0 .047-.047.082-.082.082zm12.129-2.36c-.736.187-1.239.327-1.963.514-.176.046-.187.058-.34-.117-.174-.199-.303-.327-.548-.444-.737-.362-1.45-.257-2.115.175-.795.514-1.204 1.274-1.192 2.22.011.935.654 1.706 1.577 1.835.795.105 1.46-.175 1.987-.77.105-.128.198-.269.315-.432H10.11c-.245 0-.304-.152-.222-.35.152-.362.432-.97.596-1.274a.315.315 0 0 1 .292-.187h4.253c-.023.316-.023.631-.07.947a4.983 4.983 0 0 1-.958 2.29c-.841 1.11-1.94 1.8-3.33 1.986-1.145.152-2.209-.07-3.143-.77-.865-.655-1.356-1.52-1.484-2.595-.152-1.274.222-2.419.993-3.424.83-1.086 1.928-1.776 3.272-2.02 1.098-.2 2.15-.07 3.096.571.62.41 1.063.97 1.356 1.648.07.105.023.164-.117.2zm3.868 6.461c-1.064-.024-2.034-.328-2.852-1.029a3.665 3.665 0 0 1-1.262-2.255c-.21-1.32.152-2.489.947-3.529.853-1.122 1.881-1.706 3.272-1.95 1.192-.21 2.314-.095 3.33.595.923.63 1.496 1.484 1.648 2.605.198 1.578-.257 2.863-1.344 3.962-.771.783-1.718 1.273-2.805 1.495-.351.07-.714.082-1.934.106zm1.324-1.006c.842-.094 1.554-.432 2.08-1.075a3.576 3.576 0 0 0 .76-2.024c.105-1.215-.572-2.196-1.648-2.455-1.191-.292-2.419.304-2.956 1.426-.408.863-.385 1.754.07 2.583.468.853 1.262 1.297 2.22 1.356z"/></svg>
                 {/if}
@@ -463,16 +458,16 @@
         <p class="section-label">{tr.projectsLabel}</p>
         <h2 class="section-title">{tr.projectsTitle}</h2>
         <div class="projects-grid">
-          {#each tr.projects as project (project.name)}
+          {#each tr.projects as project, i (project.name)}
             <div
               class="project-card"
               role="presentation"
               onmousemove={tilt}
               onmouseleave={resetTilt}
             >
-              <img src="https://picsum.photos/400/300?{tr.projects.indexOf(project)+1}" alt={project.name} />
+              <img src={project.image ?? `https://picsum.photos/400/300?${i + 1}`} alt={project.name} />
               <div class="project-overlay">
-                <button class="project-link" onclick={() => {}}>{tr.viewProject}</button>
+                <button class="project-link" onclick={() => project.link && window.open(project.link, '_blank')}>{tr.viewProject}</button>
               </div>
               <div class="project-info">
                 <div class="project-name">{project.name}</div>
