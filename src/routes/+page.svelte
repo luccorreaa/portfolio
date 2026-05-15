@@ -12,6 +12,8 @@
 
   const blockchainSVG = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 170" font-family="monospace"><rect width="400" height="170" fill="#060606"/><g font-size="8.5" fill="rgba(0,255,156,0.05)"><text x="4" y="14">7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8</text><text x="4" y="28">b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e</text><text x="4" y="42">f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c</text><text x="4" y="56">3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4</text><text x="4" y="70">9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0</text><text x="4" y="84">5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6</text><text x="4" y="98">1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2</text><text x="4" y="112">7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8</text><text x="4" y="126">3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4</text><text x="4" y="140">9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0</text><text x="4" y="154">5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6</text><text x="4" y="168">1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2</text></g><rect x="14" y="22" width="110" height="118" rx="5" fill="rgba(0,255,156,0.05)" stroke="rgba(0,255,156,0.35)" stroke-width="1"/><rect x="14" y="22" width="110" height="21" rx="5" fill="rgba(0,255,156,0.13)"/><rect x="14" y="37" width="110" height="6" fill="rgba(0,255,156,0.13)"/><text x="69" y="37" text-anchor="middle" font-size="8.5" fill="#00ff9c" font-weight="bold">GENESIS</text><text x="22" y="58" font-size="7" fill="rgba(0,255,156,0.5)">prev: 0000000000000000</text><text x="22" y="72" font-size="7" fill="rgba(0,255,156,0.5)">hash: 0000a3f8b2c1d4e9</text><text x="22" y="86" font-size="7" fill="rgba(0,255,156,0.38)">nonce: 14823</text><text x="22" y="100" font-size="7" fill="rgba(0,255,156,0.38)">txns:  2</text><text x="22" y="114" font-size="6.5" fill="rgba(0,255,156,0.22)">Ed25519 signed</text><text x="22" y="128" font-size="6.5" fill="rgba(0,255,156,0.22)">merkle: verified</text><line x1="124" y1="81" x2="140" y2="81" stroke="rgba(0,255,156,0.5)" stroke-width="1.5" stroke-dasharray="3,2"/><polygon points="140,77 148,81 140,85" fill="rgba(0,255,156,0.5)"/><rect x="148" y="22" width="110" height="118" rx="5" fill="rgba(0,255,156,0.04)" stroke="rgba(0,255,156,0.25)" stroke-width="1"/><rect x="148" y="22" width="110" height="21" rx="5" fill="rgba(0,255,156,0.09)"/><rect x="148" y="37" width="110" height="6" fill="rgba(0,255,156,0.09)"/><text x="203" y="37" text-anchor="middle" font-size="8.5" fill="rgba(0,255,156,0.9)" font-weight="bold">BLOCK #1</text><text x="156" y="58" font-size="7" fill="rgba(0,255,156,0.42)">prev: 0000a3f8b2c1d4e9</text><text x="156" y="72" font-size="7" fill="rgba(0,255,156,0.42)">hash: 00001e7f9a3c5b8d</text><text x="156" y="86" font-size="7" fill="rgba(0,255,156,0.3)">nonce: 29471</text><text x="156" y="100" font-size="7" fill="rgba(0,255,156,0.3)">txns:  3</text><text x="156" y="114" font-size="6.5" fill="rgba(0,255,156,0.18)">Ed25519 signed</text><text x="156" y="128" font-size="6.5" fill="rgba(0,255,156,0.18)">merkle: verified</text><line x1="258" y1="81" x2="274" y2="81" stroke="rgba(0,255,156,0.38)" stroke-width="1.5" stroke-dasharray="3,2"/><polygon points="274,77 282,81 274,85" fill="rgba(0,255,156,0.38)"/><rect x="282" y="22" width="110" height="118" rx="5" fill="rgba(0,255,156,0.03)" stroke="rgba(0,255,156,0.18)" stroke-width="1"/><rect x="282" y="22" width="110" height="21" rx="5" fill="rgba(0,255,156,0.06)"/><rect x="282" y="37" width="110" height="6" fill="rgba(0,255,156,0.06)"/><text x="337" y="37" text-anchor="middle" font-size="8.5" fill="rgba(0,255,156,0.7)" font-weight="bold">BLOCK #2</text><text x="290" y="58" font-size="7" fill="rgba(0,255,156,0.35)">prev: 00001e7f9a3c5b8d</text><text x="290" y="72" font-size="7" fill="rgba(0,255,156,0.35)">hash: 00007b2d4f8a1c9e</text><text x="290" y="86" font-size="7" fill="rgba(0,255,156,0.25)">nonce: 73829</text><text x="290" y="100" font-size="7" fill="rgba(0,255,156,0.25)">txns:  5</text><text x="290" y="114" font-size="6.5" fill="rgba(0,255,156,0.15)">Ed25519 signed</text><text x="290" y="128" font-size="6.5" fill="rgba(0,255,156,0.15)">merkle: verified</text><text x="200" y="160" text-anchor="middle" font-size="7.5" fill="rgba(0,255,156,0.2)" letter-spacing="1.5">SHA-256 · ED25519 · MERKLE TREE</text></svg>`)}`
 
+  const portfolioSVG = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 170" font-family="monospace"><rect width="400" height="170" fill="#060606"/><rect x="0" y="0" width="400" height="22" fill="rgba(0,255,156,0.06)"/><circle cx="14" cy="11" r="4" fill="rgba(255,80,80,0.45)"/><circle cx="28" cy="11" r="4" fill="rgba(255,190,0,0.45)"/><circle cx="42" cy="11" r="4" fill="rgba(0,255,156,0.45)"/><text x="200" y="15" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.2)">+page.svelte</text><rect x="0" y="22" width="82" height="148" fill="rgba(0,255,156,0.025)"/><line x1="82" y1="22" x2="82" y2="170" stroke="rgba(255,255,255,0.05)" stroke-width="1"/><text x="8" y="38" font-size="6.5" fill="rgba(0,255,156,0.3)" letter-spacing="0.05em">EXPLORER</text><text x="8" y="54" font-size="7" fill="rgba(255,255,255,0.2)">▾ src</text><text x="16" y="68" font-size="7" fill="rgba(255,255,255,0.15)">▾ routes</text><text x="24" y="82" font-size="7" fill="rgba(0,255,156,0.6)">+page.svelte</text><text x="24" y="96" font-size="7" fill="rgba(255,255,255,0.12)">+layout.svelte</text><text x="16" y="110" font-size="7" fill="rgba(255,255,255,0.12)">▾ lib</text><text x="24" y="124" font-size="7" fill="rgba(255,255,255,0.1)">index.js</text><text x="8" y="140" font-size="7" fill="rgba(255,255,255,0.1)">▾ static</text><text x="16" y="154" font-size="7" fill="rgba(255,255,255,0.08)">CV_EN.pdf</text><text x="16" y="166" font-size="7" fill="rgba(255,255,255,0.08)">CV_ES.pdf</text><g font-size="8"><text x="94" y="38" fill="rgba(180,100,255,0.65)">&lt;script&gt;</text><text x="94" y="52" fill="rgba(80,180,255,0.5)">  let </text><text x="123" y="52" fill="rgba(255,255,255,0.45)">lang</text><text x="144" y="52" fill="rgba(255,255,255,0.25)"> = $state(</text><text x="195" y="52" fill="rgba(255,180,60,0.65)">'es'</text><text x="219" y="52" fill="rgba(255,255,255,0.25)">)</text><text x="94" y="66" fill="rgba(80,180,255,0.5)">  let </text><text x="123" y="66" fill="rgba(255,255,255,0.45)">typedText</text><text x="178" y="66" fill="rgba(255,255,255,0.25)"> = $state(</text><text x="231" y="66" fill="rgba(255,180,60,0.65)">''</text><text x="244" y="66" fill="rgba(255,255,255,0.25)">)</text><text x="94" y="80" fill="rgba(180,100,255,0.65)">&lt;/script&gt;</text><text x="94" y="98" fill="rgba(180,100,255,0.65)">&lt;section </text><text x="152" y="98" fill="rgba(0,255,156,0.55)">id</text><text x="165" y="98" fill="rgba(255,255,255,0.25)">="hero"&gt;</text><text x="94" y="112" fill="rgba(180,100,255,0.65)">  &lt;h1&gt;</text><text x="128" y="112" fill="rgba(255,255,255,0.38)">Luciano Correa</text><text x="220" y="112" fill="rgba(180,100,255,0.65)">&lt;/h1&gt;</text><text x="94" y="126" fill="rgba(180,100,255,0.65)">&lt;/section&gt;</text></g><text x="240" y="158" text-anchor="middle" font-size="7" fill="rgba(0,255,156,0.18)" letter-spacing="1.2">SVELTEKIT · TAILWIND · SVELTE 5</text></svg>`)}`
+
   /* ── TRADUCCIONES ── */
   const t = {
     es: {
@@ -32,9 +34,7 @@
       roles:        ['Ingeniero Rust Junior', 'Dev Backend & Blockchain', 'Entusiasta de Rust'],
       projects: [
         { name: 'Mini Blockchain', tech: 'Rust · SHA-256 · Ed25519', link: 'https://github.com/luccorreaa/mini-blockchain', image: blockchainSVG },
-        { name: 'Portfolio',  tech: 'SvelteKit / Tailwind' },
-        { name: 'Web App',    tech: 'Node.js / JavaScript'  },
-        { name: 'Dashboard',  tech: 'React / API'           },
+        { name: 'Portfolio',  tech: 'SvelteKit / Tailwind', link: 'https://github.com/luccorreaa/portfolio', image: portfolioSVG },
       ],
     },
     en: {
@@ -55,9 +55,7 @@
       roles:        ['Junior Rust Engineer', 'Backend & Blockchain Dev', 'Rust Enthusiast'],
       projects: [
         { name: 'Mini Blockchain', tech: 'Rust · SHA-256 · Ed25519', link: 'https://github.com/luccorreaa/mini-blockchain', image: blockchainSVG },
-        { name: 'Portfolio',  tech: 'SvelteKit / Tailwind' },
-        { name: 'Web App',    tech: 'Node.js / JavaScript'  },
-        { name: 'Dashboard',  tech: 'React / API'           },
+        { name: 'Portfolio',  tech: 'SvelteKit / Tailwind', link: 'https://github.com/luccorreaa/portfolio', image: portfolioSVG },
       ],
     }
   }
@@ -504,7 +502,7 @@
               LinkedIn
             </a>
           </div>
-          <button class="cv-download" onclick={() => { const a = document.createElement('a'); a.href = '/cv.pdf'; a.download = 'Luciano_Correa_CV.pdf'; a.click() }}>
+          <button class="cv-download" onclick={() => { const a = document.createElement('a'); a.href = lang === 'en' ? '/CV_Luciano_Correa_EN.pdf' : '/CV_Luciano_Correa_ES.pdf'; a.download = lang === 'en' ? 'CV_Luciano_Correa_EN.pdf' : 'CV_Luciano_Correa_ES.pdf'; a.click() }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="7 10 12 15 17 10"/>
@@ -920,9 +918,10 @@
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.1rem;
     margin-top: 0.5rem;
+    max-width: 720px;
   }
 
   .project-card {
@@ -1115,7 +1114,7 @@
     .sidebar { display: none; }
     .content { margin-left: 0; }
     section { padding: 3rem 1.5rem; }
-    .projects-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; max-width: 100%; }
     .about-grid { grid-template-columns: 1fr; }
   }
 
