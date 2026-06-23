@@ -57,6 +57,7 @@ export function Experience() {
 					<div className="space-y-0">
 						{experience.map((item, i) => {
 							const color = TYPE_COLOR[item.type]
+							const role = lang === 'es' ? item.role_es : item.role
 							const description = lang === 'es' ? item.description_es : item.description
 							return (
 								<RevealOnScroll key={i} delay={i * 0.09}>
@@ -93,9 +94,11 @@ export function Experience() {
 											}}
 										>
 											<div className="font-mono text-[10px] tracking-[0.25em] mb-3 flex items-center gap-3">
-												<span style={{ color: `${color}65` }}>
-													[{item.period}]
-												</span>
+												{item.type !== 'project' && (
+													<span style={{ color: `${color}65` }}>
+														[{item.period}]
+													</span>
+												)}
 												<span
 													className="text-[9px] px-1.5 py-0.5"
 													style={{
@@ -110,7 +113,7 @@ export function Experience() {
 
 											<div className="flex items-baseline justify-between gap-4 mb-2">
 												<h3 className="font-mono text-white font-bold text-sm">
-													{item.role}
+													{role}
 												</h3>
 												<span
 													className="font-mono text-xs shrink-0"

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { MatrixRain } from './MatrixRain'
 import { TerminalText } from './ui/TerminalText'
 import { Download, ArrowDown } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
@@ -91,8 +90,6 @@ export function Hero() {
 				backgroundSize: '100% 100%, 28px 28px',
 			}}
 		>
-			<MatrixRain />
-
 			{/* Vignette */}
 			<div
 				className="absolute inset-0 pointer-events-none"

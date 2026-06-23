@@ -202,6 +202,11 @@ function ProjectCard({
 	}
 
 	const description = lang === 'es' ? project.description_es : project.description
+	const cardLink = project.github || project.demo
+
+	const handleCardClick = () => {
+		if (cardLink) window.open(cardLink, '_blank', 'noopener,noreferrer')
+	}
 
 	return (
 		<RevealOnScroll delay={index * 0.1} className="h-full">
@@ -221,10 +226,12 @@ function ProjectCard({
 					boxShadow: hovered
 						? '0 20px 60px rgba(0,0,0,0.7), 0 0 40px rgba(0,255,65,0.06)'
 						: '0 4px 20px rgba(0,0,0,0.4)',
+					cursor: cardLink ? 'pointer' : 'default',
 				}}
 				onMouseMove={handleMouseMove}
 				onMouseEnter={() => setHovered(true)}
 				onMouseLeave={handleMouseLeave}
+				onClick={handleCardClick}
 				whileHover={{ y: -6 }}
 				transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
 			>
@@ -291,6 +298,7 @@ function ProjectCard({
 									rel="noopener noreferrer"
 									className="text-[#383838] hover:text-[#00FF41] transition-colors duration-200"
 									aria-label="GitHub"
+									onClick={(e) => e.stopPropagation()}
 								>
 									<Github size={14} />
 								</a>
@@ -302,6 +310,7 @@ function ProjectCard({
 									rel="noopener noreferrer"
 									className="text-[#383838] hover:text-[#00FF41] transition-colors duration-200"
 									aria-label="Live demo"
+									onClick={(e) => e.stopPropagation()}
 								>
 									<ExternalLink size={14} />
 								</a>
