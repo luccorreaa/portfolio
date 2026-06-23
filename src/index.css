@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	cursor: none;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	background: #080808;
+	color: #e0e0e0;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+}
+
+/* Film grain overlay — the invisible detail that makes everything feel tangible */
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 9997;
+	opacity: 0.038;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* CRT scanlines — barely perceptible, adds depth */
+body::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 9998;
+	background: repeating-linear-gradient(
+		0deg,
+		transparent,
+		transparent 2px,
+		rgba(0, 0, 0, 0.022) 2px,
+		rgba(0, 0, 0, 0.022) 4px
+	);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+	width: 3px;
+}
+::-webkit-scrollbar-track {
+	background: #080808;
+}
+::-webkit-scrollbar-thumb {
+	background: #00FF41;
+}
+
+/* Text selection */
+::selection {
+	background: #00FF41;
+	color: #080808;
+}
+
+.font-mono {
+	font-family: 'JetBrains Mono', monospace;
+}
+
+/* Glow helpers */
+.glow-green {
+	text-shadow:
+		0 0 20px rgba(0, 255, 65, 0.9),
+		0 0 40px rgba(0, 255, 65, 0.5),
+		0 0 80px rgba(0, 255, 65, 0.2);
+}
+
+.glow-border {
+	box-shadow:
+		0 0 20px rgba(0, 255, 65, 0.18),
+		0 0 40px rgba(0, 255, 65, 0.08),
+		inset 0 0 20px rgba(0, 255, 65, 0.04);
+}
+
+/* Card hover glow — compound invisible detail */
+@layer utilities {
+	.card-glow {
+		transition: box-shadow 0.35s ease, border-color 0.35s ease;
+	}
+	.card-glow:hover {
+		box-shadow:
+			0 0 0 1px rgba(0, 255, 65, 0.18),
+			0 8px 40px rgba(0, 0, 0, 0.6),
+			0 0 60px rgba(0, 255, 65, 0.06);
+	}
+}
+
+/* Section divider */
+.section-divider {
+	height: 1px;
+	background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 65, 0.25) 25%, rgba(0, 255, 65, 0.25) 75%, transparent 100%);
+}
+
+.section-divider::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 60%;
+	height: 48px;
+	background: radial-gradient(ellipse at top, rgba(0, 255, 65, 0.06) 0%, transparent 100%);
+	pointer-events: none;
+}
