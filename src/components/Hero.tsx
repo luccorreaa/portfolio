@@ -5,7 +5,7 @@ import { Download, ArrowDown } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
 import { translations } from '../data/translations'
 
-const ROLES = ['Data Scientist', 'Data Engineer', 'Rust enthusiast']
+const ROLES = ['Full Stack Developer', 'Backend Engineer', 'Rust enthusiast']
 
 const BOOT_LINES = [
 	{ text: 'Initializing secure shell...', delay: 0 },

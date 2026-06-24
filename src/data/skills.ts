@@ -5,10 +5,10 @@ export const skillCategories = [
 	},
 	{
 		category: 'Backend',
-		skills: ['Rust', 'Go', 'Python']
+		skills: ['Rust', 'Node.js', 'NestJS', 'PostgreSQL', 'Prisma', 'REST APIs']
 	},
 	{
 		category: 'DevOps & Infra',
-		skills: ['Git', 'Docker', 'Cloudflare', 'Vite', 'Linux', 'macOS']
+		skills: ['Git', 'Docker', 'Cloudflare', 'Vercel', 'Vite', 'Linux', 'macOS']
 	}
 ]
