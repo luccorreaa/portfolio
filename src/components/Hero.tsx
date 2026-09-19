@@ -1,277 +1,197 @@
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import { TerminalText } from './ui/TerminalText'
-import { Download, ArrowDown } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Download, MapPin } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
 import { translations } from '../data/translations'
+import { profile } from '../data/profile'
 
-const ROLES = ['Full Stack Developer', 'Backend Engineer', 'Rust enthusiast']
-
-const BOOT_LINES = [
-	{ text: 'Initializing secure shell...', delay: 0 },
-	{ text: 'Loading neural interface...', delay: 380 },
-	{ text: 'Establishing connection...', delay: 760 },
-	{ text: 'Access granted.', delay: 1100 },
-]
-
-const LINE_NUMBERS = Array.from({ length: 18 }, (_, i) => i + 1)
-
-function renderTagline(tagline: string, keywords: readonly string[]) {
-	const escaped = [...keywords].map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
-	const regex = new RegExp(`(${escaped.join('|')})`, 'i')
-	const parts = tagline.split(regex)
-	return parts.map((part, i) =>
-		keywords.some((k) => k.toLowerCase() === part.toLowerCase()) ? (
-			<span key={i} className="text-[#00FF41]">
-				{part}
-			</span>
-		) : (
-			part
-		)
+function SystemGraphic() {
+	return (
+		<svg className="system-graphic" viewBox="0 0 420 245" fill="none" aria-hidden="true">
+			<defs>
+				<radialGradient id="system-glow">
+					<stop stopColor="#00ff41" stopOpacity=".1" />
+					<stop offset="1" stopColor="#00ff41" stopOpacity="0" />
+				</radialGradient>
+			</defs>
+			<ellipse cx="210" cy="122" rx="155" ry="120" fill="url(#system-glow)" />
+			<g stroke="#00ff41" strokeOpacity=".13">
+				<ellipse cx="210" cy="122" rx="146" ry="62" transform="rotate(-25 210 122)" />
+				<ellipse cx="210" cy="122" rx="146" ry="62" transform="rotate(25 210 122)" />
+				<ellipse cx="210" cy="122" rx="96" ry="96" />
+				<path d="M64 122h292M210 22v200M105 53l210 138M105 191L315 53" strokeDasharray="3 5" />
+			</g>
+			<g stroke="#00ff41" strokeOpacity=".45">
+				<path d="M105 78l105 44 106-47M210 122l-92 60m92-60 103 55" />
+			</g>
+			<g fill="#111a13" stroke="#405e46">
+				<circle cx="105" cy="78" r="5" />
+				<circle cx="316" cy="75" r="5" />
+				<circle cx="118" cy="182" r="5" />
+				<circle cx="313" cy="177" r="5" />
+			</g>
+			<rect
+				x="179"
+				y="91"
+				width="62"
+				height="62"
+				rx="10"
+				transform="rotate(45 210 122)"
+				fill="#101c13"
+				stroke="#00ff41"
+				strokeOpacity=".65"
+			/>
+			<text x="210" y="130" textAnchor="middle" fill="#00ff41" fontSize="23" fontFamily="monospace">
+				lc_
+			</text>
+			<g fill="#9faa9f" fontSize="10" fontFamily="monospace">
+				<text x="76" y="62">
+					TEST
+				</text>
+				<text x="294" y="58">
+					BUILD
+				</text>
+				<text x="80" y="206">
+					LEARN
+				</text>
+				<text x="292" y="202">
+					ITERATE
+				</text>
+			</g>
+			<g fill="#00ff41">
+				<circle cx="77" cy="150" r="2" />
+				<circle cx="247" cy="34" r="2" />
+				<circle cx="345" cy="124" r="2" />
+			</g>
+		</svg>
 	)
 }
 
 export function Hero() {
-	const [showContent, setShowContent] = useState(false)
-	const [roleIndex, setRoleIndex] = useState(0)
-	const [roleText, setRoleText] = useState('')
-	const [isDeleting, setIsDeleting] = useState(false)
-	const [roleStarted, setRoleStarted] = useState(false)
 	const { lang } = useLang()
-	const tr = translations[lang]
-
-	useEffect(() => {
-		const t = setTimeout(() => setShowContent(true), 1700)
-		return () => clearTimeout(t)
-	}, [])
-
-	useEffect(() => {
-		if (!showContent) return
-		const t = setTimeout(() => setRoleStarted(true), 900)
-		return () => clearTimeout(t)
-	}, [showContent])
-
-	useEffect(() => {
-		if (!roleStarted) return
-		const current = ROLES[roleIndex]
-		let timeout: ReturnType<typeof setTimeout>
-		if (!isDeleting && roleText === current) {
-			timeout = setTimeout(() => setIsDeleting(true), 1800)
-		} else if (isDeleting && roleText === '') {
-			timeout = setTimeout(() => {
-				setIsDeleting(false)
-				setRoleIndex((prev) => (prev + 1) % ROLES.length)
-			}, 300)
-		} else {
-			timeout = setTimeout(
-				() =>
-					setRoleText((prev) =>
-						isDeleting ? prev.slice(0, -1) : current.slice(0, prev.length + 1),
-					),
-				isDeleting ? 28 : 42,
-			)
-		}
-		return () => clearTimeout(timeout)
-	}, [roleText, isDeleting, roleIndex, roleStarted])
-
-	const cvHref =
-		lang === 'es' ? '/CV_Luciano_Correa_ES.pdf' : '/CV_Luciano_Correa_EN.pdf'
-
+	const tr = translations[lang].hero
 	return (
-		<section
-			id="about"
-			className="relative min-h-screen flex items-center justify-center overflow-hidden"
-			style={{
-				backgroundColor: 'rgba(8,8,8,0.82)',
-				backgroundImage: `
-					radial-gradient(ellipse 100% 55% at 50% -5%, rgba(0,255,65,0.07) 0%, transparent 65%),
-					radial-gradient(rgba(0,255,65,0.09) 1px, transparent 1px)
-				`,
-				backgroundSize: '100% 100%, 28px 28px',
-			}}
-		>
-			{/* Vignette */}
-			<div
-				className="absolute inset-0 pointer-events-none"
-				style={{
-					background:
-						'radial-gradient(ellipse 65% 65% at 50% 50%, transparent 0%, #080808 100%)',
-				}}
-			/>
-
-			{/* Bottom fade */}
-			<div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
-
-			{/* Left line-number decoration */}
-			<div className="absolute left-5 top-0 bottom-0 flex flex-col justify-center pointer-events-none select-none hidden lg:flex">
-				<div className="space-y-[1.18rem]">
-					{LINE_NUMBERS.map((n) => (
-						<div key={n} className="font-mono text-[10px] text-white/[0.04] text-right w-6">
-							{String(n).padStart(2, '0')}
+		<section id="about" className="hero" aria-labelledby="hero-title" tabIndex={-1}>
+			<div className="hero-grid" aria-hidden="true" />
+			<div className="container hero-content">
+				<div className="hero-topline">
+					<span className="availability">
+						<span className="status-dot" />
+						{tr.available}
+					</span>
+					<span className="location">
+						<MapPin size={13} aria-hidden="true" />
+						{tr.location}
+					</span>
+				</div>
+				<div className="hero-main">
+					<div className="hero-copy">
+						<p className="eyebrow">
+							<span aria-hidden="true">~/</span> {tr.eyebrow}
+						</p>
+						<h1 id="hero-title">
+							Luciano
+							<br />
+							Correa<span className="name-dot">.</span>
+						</h1>
+						<p className="hero-intro">
+							{tr.intro}
+							<br />
+							<span>{tr.introAccent}</span>
+						</p>
+						<p className="hero-description">{tr.description}</p>
+						<div className="hero-actions">
+							<a href="#projects" className="button button-primary">
+								{tr.projects}
+								<ArrowDown size={16} aria-hidden="true" />
+							</a>
+							<a
+								href={profile.cv[lang]}
+								className="button button-secondary"
+								download
+								aria-label={tr.cvLabel}
+							>
+								<Download size={16} aria-hidden="true" />
+								{tr.cv}
+								<span className="file-type">PDF</span>
+							</a>
 						</div>
-					))}
+					</div>
+					<aside className="profile-terminal" aria-label={tr.terminalLabel}>
+						<div className="terminal-bar">
+							<span className="terminal-dots" aria-hidden="true">
+								<i />
+								<i />
+								<i />
+							</span>
+							<span>luciano / profile.ts</span>
+							<span className="terminal-branch">main</span>
+						</div>
+						<div className="terminal-body">
+							<div className="terminal-prompt">
+								<span>❯</span> whoami
+								<span className="terminal-caret" aria-hidden="true" />
+							</div>
+							<SystemGraphic />
+							<p className="terminal-comment">{tr.terminalComment}</p>
+							<dl className="profile-data">
+								<div>
+									<dt>role</dt>
+									<dd>QA Automation Engineer</dd>
+								</div>
+								<div>
+									<dt>{tr.focusLabel}</dt>
+									<dd>{tr.focus}</dd>
+								</div>
+								<div>
+									<dt>{tr.learningLabel}</dt>
+									<dd>{tr.learning}</dd>
+								</div>
+								<div>
+									<dt>stack</dt>
+									<dd>TypeScript · React · Rust</dd>
+								</div>
+							</dl>
+						</div>
+						<div className="terminal-footer">
+							<span>
+								<span className="status-dot" /> build. test. repeat.
+							</span>
+							<span aria-hidden="true">UTF-8</span>
+						</div>
+					</aside>
+				</div>
+				<div className="hero-facts">
+					<a href="#experience">
+						<span className="fact-index" aria-hidden="true">
+							01
+						</span>
+						<span>
+							<small>{tr.workLabel}</small>
+							<strong>{tr.work}</strong>
+						</span>
+						<ArrowUpRight size={17} aria-hidden="true" />
+					</a>
+					<a href="#projects">
+						<span className="fact-index" aria-hidden="true">
+							02
+						</span>
+						<span>
+							<small>{tr.projectsLabel}</small>
+							<strong>{tr.projectsValue}</strong>
+						</span>
+						<ArrowUpRight size={17} aria-hidden="true" />
+					</a>
+					<a href="#skills">
+						<span className="fact-index" aria-hidden="true">
+							03
+						</span>
+						<span>
+							<small>{tr.studyLabel}</small>
+							<strong>{tr.study}</strong>
+						</span>
+						<ArrowUpRight size={17} aria-hidden="true" />
+					</a>
 				</div>
 			</div>
-
-			{/* Right decorative dashes */}
-			<div className="absolute right-8 top-1/4 bottom-1/4 pointer-events-none hidden lg:flex flex-col justify-between items-end">
-				{Array.from({ length: 6 }).map((_, i) => (
-					<div key={i} className="w-4 h-px bg-[#00FF41]/10" />
-				))}
-			</div>
-
-			<div className="relative z-10 max-w-4xl mx-auto px-8 py-32">
-				{/* Boot sequence */}
-				<motion.div
-					className="font-mono text-xs text-[#00FF41]/40 space-y-1 mb-10"
-					animate={{ opacity: showContent ? 0 : 1 }}
-					transition={{ duration: 0.4 }}
-					style={{ position: showContent ? 'absolute' : 'relative', pointerEvents: 'none' }}
-				>
-					{BOOT_LINES.map((line, i) => (
-						<motion.div
-							key={i}
-							initial={{ opacity: 0, x: -8 }}
-							animate={{ opacity: 1, x: 0 }}
-							transition={{ delay: line.delay / 1000, duration: 0.3 }}
-							className="tracking-wider"
-						>
-							<span className="text-[#00FF41]/60">{'> '}</span>
-							{line.text}
-						</motion.div>
-					))}
-				</motion.div>
-
-				{/* Main content */}
-				{showContent && (
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ duration: 0.5 }}
-					>
-						{/* Prompt line */}
-						<div className="font-mono text-[#00FF41]/35 text-xs mb-5 tracking-[0.2em] flex items-center gap-2">
-							<span className="w-1.5 h-1.5 rounded-full bg-[#00FF41]/40 inline-block" />
-							root@portfolio:~$ ./identify.sh
-						</div>
-
-						{/* Name */}
-						<h1
-							className="font-mono text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-3 leading-none tracking-tight"
-							style={{
-								textShadow:
-									'0 0 40px rgba(0,255,65,0.2), 0 0 80px rgba(0,255,65,0.08)',
-							}}
-						>
-							<TerminalText text="Luciano Correa" delay={80} speed={48} />
-						</h1>
-
-						{/* Role */}
-						<div className="font-mono text-xl md:text-2xl text-[#00FF41] mb-8 tracking-wide">
-							<span className="text-[#303030]">{'> '}</span>
-							<span>
-								{roleText}
-								<span
-									className="inline-block w-[2px] bg-[#00FF41] ml-0.5 align-middle"
-									style={{ height: '0.85em' }}
-								/>
-							</span>
-						</div>
-
-						{/* Tagline */}
-						<motion.p
-							className="text-[#666666] text-base md:text-lg max-w-lg leading-relaxed mb-4"
-							initial={{ opacity: 0, y: 14 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ delay: 1.8, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-						>
-							{renderTagline(tr.hero.tagline, tr.hero.keywords)}
-						</motion.p>
-
-						{/* Separator */}
-						<motion.div
-							className="w-24 h-px mb-8"
-							style={{
-								background:
-									'linear-gradient(90deg, rgba(0,255,65,0.4) 0%, rgba(0,255,65,0.1) 70%, transparent 100%)',
-								transformOrigin: 'left',
-							}}
-							initial={{ opacity: 0, scaleX: 0 }}
-							animate={{ opacity: 1, scaleX: 1 }}
-							transition={{ delay: 2.0, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-						/>
-
-						{/* CTAs */}
-						<motion.div
-							className="flex flex-wrap gap-4"
-							initial={{ opacity: 0, y: 14 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ delay: 2.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-						>
-							<a
-								href="#projects"
-								className="group relative px-6 py-3 font-mono text-sm border border-[#00FF41] text-[#00FF41] overflow-hidden"
-								style={{ transition: 'box-shadow 0.25s ease' }}
-								onMouseEnter={(e) => {
-									;(e.currentTarget as HTMLElement).style.boxShadow =
-										'0 0 20px rgba(0,255,65,0.2), inset 0 0 20px rgba(0,255,65,0.05)'
-								}}
-								onMouseLeave={(e) => {
-									;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
-								}}
-							>
-								<span className="relative z-10">{tr.hero.cta_view}</span>
-								<div className="absolute inset-0 bg-[#00FF41]/7 scale-x-0 group-hover:scale-x-100 transition-transform duration-[250ms] ease-out origin-left" />
-							</a>
-
-							<a
-								href={cvHref}
-								download
-								className="flex items-center gap-2 px-6 py-3 font-mono text-sm border border-white/10 text-[#555555] hover:border-white/20 hover:text-[#909090] transition-all duration-200"
-							>
-								<Download size={13} />
-								{tr.hero.cta_cv}
-							</a>
-						</motion.div>
-
-						{/* Status row */}
-						<motion.div
-							className="flex items-center gap-5 mt-10"
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							transition={{ delay: 2.7, duration: 0.8 }}
-						>
-							<div className="flex items-center gap-1.5">
-								<span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-pulse" />
-								<span className="font-mono text-[10px] text-[#383838] tracking-widest">
-									{tr.hero.available}
-								</span>
-							</div>
-							<div className="w-px h-3 bg-white/10" />
-							<span className="font-mono text-[10px] text-[#383838] tracking-widest">
-								Buenos Aires, AR
-							</span>
-						</motion.div>
-					</motion.div>
-				)}
-			</div>
-
-			{/* Scroll hint */}
-			<motion.div
-				className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				transition={{ delay: 4.0, duration: 1 }}
-			>
-				<span className="font-mono text-[10px] text-[#2a2a2a] tracking-[0.4em]">SCROLL</span>
-				<motion.div
-					animate={{ y: [0, 6, 0] }}
-					transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
-					className="text-[#00FF41]/25"
-				>
-					<ArrowDown size={16} />
-				</motion.div>
-			</motion.div>
 		</section>
 	)
 }

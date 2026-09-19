@@ -1,37 +1,70 @@
 export interface Project {
-	id: number
+	id: 'anvil' | 'blockchain' | 'interview' | 'notes'
 	title: string
-	description: string
-	description_es: string
+	year: string
+	category: { en: string; es: string }
+	description: { en: string; es: string }
 	tech: string[]
+	authorship: 'coauthor' | 'soleAuthor' | 'personal'
 	github: string | null
 	demo: string | null
-	image: string | null
 }
 
 export const projects: Project[] = [
 	{
-		id: 1,
-		title: 'mini-blockchain',
-		description:
-			'Fully functional blockchain node implemented in Rust from scratch. Nodes discover each other on local networks via mDNS, synchronize chains automatically, and propagate blocks and transactions through a P2P mesh. Includes PoW mining, Merkle trees, and encrypted wallet management — server never touches private keys.',
-		description_es:
-			'Nodo blockchain completamente funcional implementado desde cero en Rust. Los nodos se descubren en redes locales vía mDNS, sincronizan cadenas automáticamente y propagan bloques y transacciones mediante una red P2P. Incluye minería PoW, árboles de Merkle y gestión de wallets cifradas — el servidor nunca toca las claves privadas.',
-		tech: ['Rust', 'libp2p', 'axum', 'tokio', 'ed25519', 'SHA-256', 'AES-GCM'],
-		github: 'https://github.com/luccorreaa/mini-blockchain',
-		demo: null,
-		image: null,
+		id: 'anvil',
+		title: 'anvil-zk',
+		year: '2026',
+		category: { es: 'Sistemas distribuidos', en: 'Distributed systems' },
+		description: {
+			es: 'Coordinador distribuido de pruebas de conocimiento cero. Arquitectura hexagonal y una máquina de estados tipada para organizar el ciclo de vida de los trabajos.',
+			en: 'A distributed zero-knowledge proof coordinator. Hexagonal architecture and a typed state machine to organize the job lifecycle.'
+		},
+		tech: ['Rust', 'gRPC', 'Docker'],
+		authorship: 'coauthor',
+		github: null,
+		demo: null
 	},
 	{
-		id: 2,
-		title: 'notes-app',
-		description:
-			'Full-stack note-taking app with a NestJS REST API and a React frontend. Uses PostgreSQL via Prisma ORM and requires no authentication — users can create and manage notes straight away. Both frontend and backend are independently deployed on Vercel.',
-		description_es:
-			'App de notas full-stack con una API REST en NestJS y frontend en React. Usa PostgreSQL vía Prisma ORM y no requiere autenticación — los usuarios pueden crear y gestionar notas de inmediato. El frontend y el backend están desplegados de forma independiente en Vercel.',
-		tech: ['TypeScript', 'React', 'NestJS', 'PostgreSQL', 'Prisma', 'Vercel'],
-		github: 'https://github.com/luccorreaa/notes-app',
-		demo: 'https://frontend-zeta-nine-63.vercel.app',
-		image: null,
+		id: 'blockchain',
+		title: 'mini-blockchain',
+		year: '2026',
+		category: { es: 'Blockchain & redes P2P', en: 'Blockchain & P2P networking' },
+		description: {
+			es: 'Un nodo blockchain construido desde cero en Rust. Núcleo criptográfico, API REST y red peer-to-peer en un mismo sistema.',
+			en: 'A blockchain node built from scratch in Rust. Cryptographic core, REST API and peer-to-peer networking in one system.'
+		},
+		tech: ['Rust', 'Tokio', 'Axum', 'libp2p'],
+		authorship: 'soleAuthor',
+		github: 'https://github.com/luccorreaa/mini-blockchain',
+		demo: null
 	},
+	{
+		id: 'interview',
+		title: 'AI Interview Assistant',
+		year: '2026',
+		category: { es: 'Desktop & inteligencia artificial', en: 'Desktop & artificial intelligence' },
+		description: {
+			es: 'App de escritorio con captura de audio en tiempo real, transcripción y sugerencias asistidas por IA. Una interfaz en React dentro de una aplicación Tauri.',
+			en: 'A desktop app with real-time audio capture, transcription and AI-assisted suggestions. A React interface inside a Tauri application.'
+		},
+		tech: ['Tauri', 'React', 'Claude API', 'Whisper'],
+		authorship: 'personal',
+		github: null,
+		demo: null
+	},
+	{
+		id: 'notes',
+		title: 'notes-app',
+		year: '2026',
+		category: { es: 'Desarrollo full stack', en: 'Full stack development' },
+		description: {
+			es: 'Monorepo full stack en TypeScript para gestionar notas. Frontend en React, API en NestJS y PostgreSQL con consultas tipadas y migraciones automatizadas con Prisma.',
+			en: 'A full stack TypeScript monorepo for managing notes. React frontend, NestJS API and PostgreSQL with type-safe queries and automated Prisma migrations.'
+		},
+		tech: ['NestJS', 'React', 'TypeScript', 'PostgreSQL', 'Prisma'],
+		authorship: 'personal',
+		github: 'https://github.com/luccorreaa/notes-app',
+		demo: 'https://frontend-zeta-nine-63.vercel.app'
+	}
 ]
