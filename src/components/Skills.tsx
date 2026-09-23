@@ -16,7 +16,7 @@ export function Skills() {
 			tabIndex={-1}
 		>
 			<div className="container">
-				<div className="section-heading">
+				<div className="section-heading" data-reveal>
 					<div>
 						<p className="eyebrow">{tr.eyebrow}</p>
 						<h2 id="skills-title">{tr.title}</h2>
@@ -30,7 +30,7 @@ export function Skills() {
 					{skillCategories.map(({ id, skills }, i) => {
 						const Icon = icons[id]
 						return (
-							<article className="skill-group" key={id}>
+							<article className="skill-group" key={id} data-reveal data-reveal-delay={i * 65}>
 								<div className="skill-group-top">
 									<Icon size={21} aria-hidden="true" />
 									<span aria-hidden="true">0{i + 1}</span>
@@ -45,7 +45,7 @@ export function Skills() {
 						)
 					})}
 				</div>
-				<div className="skills-bottom">
+				<div className="skills-bottom" data-reveal>
 					<div className="languages">
 						<h3>
 							<Languages size={17} aria-hidden="true" />

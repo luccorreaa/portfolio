@@ -11,14 +11,17 @@ export const translations = {
 			open: 'Abrir menú',
 			close: 'Cerrar menú',
 			home: 'Luciano Correa, inicio',
-			skip: 'Saltar al contenido'
+			skip: 'Saltar al contenido',
+			pauseMotion: 'Pausar animaciones',
+			resumeMotion: 'Activar animaciones',
+			reducedMotion: 'Movimiento reducido según tu dispositivo'
 		},
 		hero: {
 			eyebrow: 'QA AUTOMATION ENGINEER',
 			intro: 'Calidad en cada prueba.',
 			introAccent: 'Ideas que se vuelven código.',
 			description:
-				'Testeo aplicaciones web y mobile en producción. Desarrollo proyectos full stack y exploro sistemas en Rust, mientras estudio Ingeniería en Sistemas en la UTN.',
+				'QA Automation en WestDigital. Desarrollo proyectos full stack y sistemas en Rust, mientras estudio Ingeniería en Sistemas en la UTN.',
 			projects: 'Explorar proyectos',
 			cv: 'Descargar CV',
 			cvLabel: 'Descargar CV en español (PDF)',
@@ -34,8 +37,8 @@ export const translations = {
 			work: 'QA en WestDigital',
 			projectsLabel: 'APRENDER CONSTRUYENDO',
 			projectsValue: '04 proyectos personales',
-			studyLabel: 'EN CONSTRUCCIÓN',
-			study: 'Mi camino a Full Stack'
+			studyLabel: 'FORMACIÓN ACADÉMICA',
+			study: 'Ingeniería en Sistemas · UTN'
 		},
 		projects: {
 			eyebrow: '01 / PROYECTOS',
@@ -112,14 +115,17 @@ export const translations = {
 			open: 'Open menu',
 			close: 'Close menu',
 			home: 'Luciano Correa, home',
-			skip: 'Skip to content'
+			skip: 'Skip to content',
+			pauseMotion: 'Pause animations',
+			resumeMotion: 'Enable animations',
+			reducedMotion: 'Reduced motion follows your device preference'
 		},
 		hero: {
 			eyebrow: 'QA AUTOMATION ENGINEER',
 			intro: 'Quality in every test.',
 			introAccent: 'Ideas brought to life in code.',
 			description:
-				'I test web and mobile applications in production, build full stack projects and explore systems in Rust while studying Information Systems Engineering at UTN.',
+				'QA Automation at WestDigital. I build full stack projects and systems in Rust while studying Information Systems Engineering at UTN.',
 			projects: 'Explore projects',
 			cv: 'Download CV',
 			cvLabel: 'Download CV in English (PDF)',
@@ -135,8 +141,8 @@ export const translations = {
 			work: 'QA at WestDigital',
 			projectsLabel: 'LEARNING BY BUILDING',
 			projectsValue: '04 personal projects',
-			studyLabel: 'IN PROGRESS',
-			study: 'My path to Full Stack'
+			studyLabel: 'EDUCATION',
+			study: 'Systems Engineering · UTN'
 		},
 		projects: {
 			eyebrow: '01 / PROJECTS',

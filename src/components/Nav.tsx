@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Download, Menu, Pause, Play, X } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
 import { translations } from '../data/translations'
+import { profile } from '../data/profile'
+import { useMotion } from '../context/MotionContext'
 
 const sections = ['about', 'projects', 'experience', 'skills', 'contact'] as const
 type SectionId = (typeof sections)[number]
@@ -9,10 +11,28 @@ type SectionId = (typeof sections)[number]
 export function Nav() {
 	const { lang, setLang } = useLang()
 	const tr = translations[lang].nav
+	const { enabled, toggle, systemReduced } = useMotion()
 	const [open, setOpen] = useState(false)
 	const [active, setActive] = useState<SectionId>('about')
 	const header = useRef<HTMLElement>(null)
 	const trigger = useRef<HTMLButtonElement>(null)
+	const desktopNav = useRef<HTMLElement>(null)
+	const indicator = useRef<HTMLSpanElement>(null)
+
+	useEffect(() => {
+		const nav = desktopNav.current
+		if (!nav) return
+		const update = () => {
+			const link = nav.querySelector<HTMLElement>('[aria-current]')
+			if (!link || !indicator.current) return
+			indicator.current.style.width = `${link.offsetWidth}px`
+			indicator.current.style.transform = `translateX(${link.offsetLeft}px)`
+		}
+		update()
+		const observer = new ResizeObserver(update)
+		observer.observe(nav)
+		return () => observer.disconnect()
+	}, [active, lang])
 
 	useEffect(() => {
 		const visible = new Set<string>()
@@ -104,11 +124,15 @@ export function Nav() {
 						_
 					</span>
 				</a>
-				<nav className="desktop-nav" aria-label={tr.label}>
+				<nav className="desktop-nav" aria-label={tr.label} ref={desktopNav}>
+					<span className="nav-indicator" ref={indicator} aria-hidden="true" />
 					{links}
 				</nav>
 				<div className="nav-actions">
-					<div className="language-control" role="group" aria-label="Language / Idioma">
+					<button type="button" className="motion-toggle icon-button" onClick={toggle} aria-pressed={!enabled} disabled={systemReduced} aria-label={tr.pauseMotion} title={systemReduced ? tr.reducedMotion : enabled ? tr.pauseMotion : tr.resumeMotion}>
+						{enabled ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}
+					</button>
+					<div className="language-control" data-language={lang} role="group" aria-label="Language / Idioma">
 						<button
 							type="button"
 							lang="es"
@@ -128,6 +152,7 @@ export function Nav() {
 							EN
 						</button>
 					</div>
+					<a className="nav-cv" href={profile.cv[lang]} download aria-label={translations[lang].hero.cvLabel}>CV <Download size={14} aria-hidden="true" /></a>
 					<button
 						type="button"
 						className="menu-trigger icon-button"

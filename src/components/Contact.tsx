@@ -23,14 +23,11 @@ export function Contact() {
 	return (
 		<section id="contact" className="contact-section" aria-labelledby="contact-title" tabIndex={-1}>
 			<div className="container">
-				<div className="contact-content">
+				<div className="contact-content" data-reveal>
 					<div>
 						<p className="eyebrow">{tr.eyebrow}</p>
 						<h2 id="contact-title">
 							{tr.title}
-							<span className="name-dot" aria-hidden="true">
-								_
-							</span>
 						</h2>
 					</div>
 					<div className="contact-details">

@@ -1,7 +1,8 @@
-import { BriefcaseBusiness, GraduationCap } from 'lucide-react'
+import { ArrowDownToLine, BriefcaseBusiness, GraduationCap } from 'lucide-react'
 import { workExperience as work } from '../data/experience'
 import { useLang } from '../context/LanguageContext'
 import { translations } from '../data/translations'
+import { profile } from '../data/profile'
 
 export function Experience() {
 	const { lang } = useLang()
@@ -14,16 +15,14 @@ export function Experience() {
 			tabIndex={-1}
 		>
 			<div className="container experience-layout">
-				<div className="experience-heading">
+				<div className="experience-heading" data-reveal>
 					<p className="eyebrow">{tr.eyebrow}</p>
 					<h2 id="experience-title">{tr.title}</h2>
 					<p className="section-description">{tr.description}</p>
-					<span className="section-command" aria-hidden="true">
-						$ cat journey.log
-					</span>
+					<a className="text-link experience-cv" href={profile.cv[lang]} download aria-label={translations[lang].hero.cvLabel}>{translations[lang].hero.cv}<ArrowDownToLine size={15} aria-hidden="true" /></a>
 				</div>
 				<div className="timeline">
-					<article className="timeline-item">
+					<article className="timeline-item" data-reveal>
 						<span className="timeline-icon">
 							<BriefcaseBusiness size={18} aria-hidden="true" />
 						</span>
@@ -52,7 +51,7 @@ export function Experience() {
 							))}
 						</ul>
 					</article>
-					<article className="timeline-item">
+					<article className="timeline-item" data-reveal>
 						<span className="timeline-icon">
 							<GraduationCap size={19} aria-hidden="true" />
 						</span>

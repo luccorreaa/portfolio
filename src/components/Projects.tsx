@@ -120,7 +120,7 @@ export function Projects() {
 			tabIndex={-1}
 		>
 			<div className="container">
-				<div className="section-heading">
+				<div className="section-heading" data-reveal>
 					<div>
 						<p className="eyebrow">{tr.eyebrow}</p>
 						<h2 id="projects-title">{tr.title}</h2>
@@ -134,7 +134,9 @@ export function Projects() {
 				<div className="projects-grid">
 					{projects.map((project, i) => (
 						<article
-							className="project-card"
+							className={`project-card project-${project.id}`}
+							data-reveal
+							data-reveal-delay={(i % 2) * 90}
 							key={project.id}
 							aria-labelledby={`project-${project.id}`}
 						>
@@ -153,6 +155,7 @@ export function Projects() {
 									<span>{project.year}</span>
 								</div>
 								<ProjectDiagram id={project.id} />
+								<span className="visual-orbit" aria-hidden="true" />
 								<span className="diagram-caption">{tr.diagram}</span>
 							</div>
 							<div className="project-content">

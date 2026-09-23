@@ -6,11 +6,14 @@ import { Skills } from './components/Skills'
 import { Projects } from './components/Projects'
 import { Experience } from './components/Experience'
 import { Contact } from './components/Contact'
+import { MotionProvider } from './context/MotionContext'
+import { PageMotion } from './components/PageMotion'
 
 function Portfolio() {
 	const { lang } = useLang()
 	return (
 		<>
+			<PageMotion />
 			<a className="skip-link" href="#main">
 				{translations[lang].nav.skip}
 			</a>
@@ -29,7 +32,9 @@ function Portfolio() {
 export default function App() {
 	return (
 		<LanguageProvider>
-			<Portfolio />
+			<MotionProvider>
+				<Portfolio />
+			</MotionProvider>
 		</LanguageProvider>
 	)
 }
